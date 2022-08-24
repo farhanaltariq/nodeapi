@@ -1,9 +1,10 @@
 import express from "express";
-
-import { RFIDController } from "../controllers/RFIDController.js";
-
 const router = express.Router();
-router.get("/", RFIDController.getRFID);
-router.post("/", RFIDController.saveRFID);
+
+import RFIDRoutes from "./RFIDRoutes.js";
+import DefaultRoutes from "./DefaultRoutes.js";
+
+router.use("/rfid", RFIDRoutes);
+router.use(DefaultRoutes);
 
 export default router;
