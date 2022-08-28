@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Rfid = mongoose.Schema({
+const Rfid = new mongoose.Schema({
     id: {
         type: String,
         required: true,

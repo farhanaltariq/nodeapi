@@ -11,6 +11,10 @@ MongooseConnection.connectDB();
 
 app.use(cors());
 app.use(express.json());
+app.use(function (req, res, next) {
+    console.log(req.method, " ", req.url);
+    next();
+});
 app.use(route);
 
 const host = process.env.HOST || "localhost";
