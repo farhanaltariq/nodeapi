@@ -39,25 +39,9 @@ export class AuthController {
         }
     };
 
-    static authenticateToken = async (req, res, next) => {
-        const authHeader = req.headers["authorization"];
-        const token = authHeader && authHeader.split(" ")[1];
-        if (token == null) return res.sendStatus(401);
-
-        jsonwebtoken.verify(
-            token,
-            process.env.ACCESS_TOKEN_SECRET,
-            (err, user) => {
-                if (err) return res.sendStatus(403);
-                req.user = user;
-                next();
-            }
-        );
-    };
-
     static test = async (req, res) => {
         const user = await User.findOne({
-            username: req.user.name,
+            username: req.user.username,
         });
 
         return res.json(user);
