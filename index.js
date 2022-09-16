@@ -3,18 +3,16 @@ import cors from "cors";
 import route from "./routes/index.js";
 import dotenv from "dotenv";
 import { MongooseConnection } from "./config/database.js";
+import morgan from "morgan";
 
 const app = express();
 dotenv.config();
 
 MongooseConnection.connectDB();
 
+app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
-app.use(function (req, res, next) {
-    console.log(req.method, " ", req.url);
-    next();
-});
 app.use(route);
 
 const host = process.env.HOST || "localhost";
