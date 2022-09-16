@@ -1,4 +1,5 @@
 import Rfid from "../models/RFID.js";
+import { LockController } from "./LockController.js";
 
 export class RFIDController {
     static getRFID = async (req, res) => {
@@ -29,9 +30,23 @@ export class RFIDController {
         try {
             const rfid = await Rfid.find({ id: req.body.id }).exec();
             if (rfid.length > 0) {
-                return res.status(200).json({ message: "RFID is valid" });
+                req.body.status = true;
+                LockController.createStatus(req, res);
+                res.status(200).json({
+                    message: "RFID is valid, key unlocked for 7 seconds",
+                });
+
+                // delay 5s
+                setTimeout(() => {
+                    req.body.status = false;
+                    LockController.createStatus(req, res);
+                }, 7000);
+
+                return;
             }
 
+            req.body.status = false;
+            LockController.createStatus(req, res);
             return res.status(400).json({ message: "RFID is invalid" });
         } catch (error) {
             res.status(400).json({ message: error.message });
