@@ -7,8 +7,8 @@ import DefaultRoutes from "./DefaultRoutes.js";
 import AuthRoutes from "./AuthRoutes.js";
 import LockRoutes from "./LockRoutes.js";
 
-router.use(Auth.authenticateToken);
 router.use("/auth", AuthRoutes);
+router.use(Auth.authenticateToken);
 router.use("/rfid", RFIDRoutes);
 router.use("/lock", LockRoutes);
 router.use(DefaultRoutes);
