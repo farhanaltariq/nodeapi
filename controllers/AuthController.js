@@ -11,29 +11,31 @@ export class AuthController {
                 username: req.body.username,
             });
 
-            const checkPassword = await bcrypt.compare(
-                req.body.password,
-                user.password
-            );
-
-            const data = {
-                id: user._id,
-                username: user.username,
-                password: user.password,
-            };
-
-            if (checkPassword) {
-                const accessToken = jsonwebtoken.sign(
-                    data,
-                    process.env.ACCESS_TOKEN_SECRET
+            if (user) {
+                const checkPassword = await bcrypt.compare(
+                    req.body.password,
+                    user.password
                 );
 
-                data.accessToken = accessToken;
+                const data = {
+                    id: user._id,
+                    username: user.username,
+                    password: user.password,
+                };
 
-                return res.json({ data });
+                if (checkPassword) {
+                    const accessToken = jsonwebtoken.sign(
+                        data,
+                        process.env.ACCESS_TOKEN_SECRET
+                    );
+
+                    data.accessToken = accessToken;
+
+                    return res.json({ data });
+                }
             }
 
-            return res.json("Invalid Credentials");
+            return res.status(401).json({ message: "Invalid credentials" });
         } catch (err) {
             return res.json(err.message);
         }
