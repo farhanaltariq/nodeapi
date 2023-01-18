@@ -1,7 +1,15 @@
 import Rfid from "../models/RFID.js";
 import { LockController } from "./LockController.js";
 
+let isRegisterMode = false;
 export class RFIDController {
+    static changeMode = async (req, res) => {
+        isRegisterMode = !isRegisterMode;
+        if (isRegisterMode)
+            return res.json({ message: "Mode changed to register" });
+        else return res.json({ message: "Mode changed to validate" });
+    };
+
     static getRFID = async (req, res) => {
         try {
             const rfid = await Rfid.find();
@@ -28,6 +36,8 @@ export class RFIDController {
 
     static validateRFID = async (req, res) => {
         try {
+            if (isRegisterMode) return this.saveRFID(req, res);
+
             const rfid = await Rfid.find({ id: req.body.id }).exec();
             if (rfid.length > 0) {
                 req.body.status = true;

@@ -42,11 +42,17 @@ export class AuthController {
     };
 
     static test = async (req, res) => {
-        const user = await User.findOne({
-            username: req.user.username,
-        });
-
-        return res.json(user);
+        try {
+            return res(req.user);
+            const user = await User.findOne({
+                username: req.user.username,
+            });
+            return res.json(user);
+        } catch (error) {
+            return res.json({
+                message: "not logged in",
+            });
+        }
     };
 
     static register = async (req, res) => {
