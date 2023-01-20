@@ -1,11 +1,10 @@
-import PIR from "../models/PIR";
-import PIR from "../models/PIR";
+import PIR from "../models/PIR.js";
 
 export class PIRController {
     static getAll = async (req, res) => {
         try {
-            const pir = await PIR.find();
-            res.json(pir);
+            const data = await PIR.find();
+            res.json(data);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
@@ -13,10 +12,18 @@ export class PIRController {
 
     static insertData = async (req, res) => {
         try {
-            const PIR = new PIR({
+            const data = new PIR({
                 status: req.body.status,
                 timestamp: new Date(),
             });
+        } catch (error) {
+            return error;
+        }
+    };
+
+    static getStatus = async (req, res) => {
+        try {
+            return res.json("status");
         } catch (error) {
             return error;
         }
