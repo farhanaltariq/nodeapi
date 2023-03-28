@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/Head') %>
+
+    <body>
+        <div class="container-scroller">
+            <%- include('layouts/Navbar') %>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <%- include('layouts/Sidebar') %>
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                                <span
+                                    class="page-title-icon bg-gradient-primary text-white me-2"
+                                >
+                                    <i class="mdi mdi-home"></i>
+                                </span>
+                                Dashboard
+                            </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 stretch-card grid-margin">
+                                <div
+                                    class="card bg-gradient-danger card-img-holder text-white"
+                                >
+                                    <div class="card-body">
+                                        <img
+                                            src="/PurpleAdmin/assets/images/dashboard/circle.svg"
+                                            class="card-img-absolute"
+                                            alt="circle-image"
+                                        />
+                                        <h4 class="font-weight-normal mb-3">
+                                            Key Log
+                                            <i
+                                                class="mdi mdi-history mdi-24px float-right"
+                                            ></i>
+                                        </h4>
+                                        <h2 class="mb-5">1,900</h2>
+                                        <h6 class="card-text">
+                                            Activity Recorded
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 stretch-card grid-margin">
+                                <div
+                                    class="card bg-gradient-info card-img-holder text-white"
+                                >
+                                    <div class="card-body">
+                                        <img
+                                            src="/PurpleAdmin/assets/images/dashboard/circle.svg"
+                                            class="card-img-absolute"
+                                            alt="circle-image"
+                                        />
+                                        <h4 class="font-weight-normal mb-3">
+                                            Captured Motions
+                                            <i
+                                                class="mdi mdi-drone mdi-24px float-right"
+                                            ></i>
+                                        </h4>
+                                        <h2 class="mb-5">45</h2>
+                                        <h6 class="card-text">
+                                            Motions Captured
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 stretch-card grid-margin">
+                                <div
+                                    class="card bg-gradient-success card-img-holder text-white"
+                                >
+                                    <div class="card-body">
+                                        <img
+                                            src="/PurpleAdmin/assets/images/dashboard/circle.svg"
+                                            class="card-img-absolute"
+                                            alt="circle-image"
+                                        />
+                                        <h4 class="font-weight-normal mb-3">
+                                            RFID Lists
+                                            <i
+                                                class="mdi mdi-nfc mdi-24px float-right"
+                                            ></i>
+                                        </h4>
+                                        <h2 class="mb-5">10</h2>
+                                        <h6 class="card-text">
+                                            RFIDs Registered
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                        <div
+                            class="container-fluid d-flex justify-content-between"
+                        >
+                            <span
+                                class="text-muted d-block text-center text-sm-start d-sm-inline-block"
+                                >Copyright © bootstrapdash.com 2021</span
+                            >
+                            <span
+                                class="float-none float-sm-end mt-1 mt-sm-0 text-end"
+                            >
+                                Free
+                                <a
+                                    href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+                                    target="_blank"
+                                    >Bootstrap admin template</a
+                                >
+                                from Bootstrapdash.com</span
+                            >
+                        </div>
+                    </footer>
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <%- include('layouts/Script') %>
+    </body>
+</html>

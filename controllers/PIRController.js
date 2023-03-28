@@ -1,10 +1,10 @@
 import PIR from "../models/PIR.js";
 
 export class PIRController {
-    static getAll = async (req, res) => {
+    static getPIR = async (req, res) => {
         try {
-            const data = await PIR.find();
-            res.json(data);
+            const pir = await PIR.find();
+            return res.render("Motions", { pir });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
@@ -12,7 +12,7 @@ export class PIRController {
 
     static insertData = async (req, res) => {
         try {
-            const data = new PIR({
+            new PIR({
                 status: req.body.status,
                 timestamp: new Date(),
             });

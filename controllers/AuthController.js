@@ -41,20 +41,6 @@ export class AuthController {
         }
     };
 
-    static test = async (req, res) => {
-        try {
-            return res(req.user);
-            const user = await User.findOne({
-                username: req.user.username,
-            });
-            return res.json(user);
-        } catch (error) {
-            return res.json({
-                message: "not logged in",
-            });
-        }
-    };
-
     static register = async (req, res) => {
         try {
             const user = new User({
@@ -68,5 +54,9 @@ export class AuthController {
                 message: err.message,
             });
         }
+    };
+
+    static loginForm = async (req, res) => {
+        return res.render("login");
     };
 }

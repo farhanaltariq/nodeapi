@@ -13,7 +13,7 @@ export class RFIDController {
     static getRFID = async (req, res) => {
         try {
             const rfid = await Rfid.find();
-            res.json(rfid);
+            return res.render("RFIDs", { rfid });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
