@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/Head') %>
+
+    <body>
+        <div class="container-scroller">
+            <%- include('layouts/Navbar') %>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <%- include('layouts/Sidebar') %>
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                                <span
+                                    class="page-title-icon bg-gradient-primary text-white me-2"
+                                >
+                                    <i class="mdi mdi-account-convert"></i>
+                                </span>
+                                Profile
+                            </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            Saved Profile
+                                        </h4>
+                                        <hr />
+                                        <form class="forms-sample">
+                                            <div class="form-group">
+                                                <label
+                                                    for="exampleInputUsername1"
+                                                    >Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="exampleInputUsername1"
+                                                    placeholder="Username"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label
+                                                    for="exampleInputUsername1"
+                                                    >Username</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="exampleInputUsername1"
+                                                    placeholder="Username"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"
+                                                    >Old Password</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="exampleInputEmail1"
+                                                    placeholder="Email"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label
+                                                    for="exampleInputPassword1"
+                                                    >New Password</label
+                                                >
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    id="exampleInputPassword1"
+                                                    placeholder="Password"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label
+                                                    for="exampleInputConfirmPassword1"
+                                                    >Confirm New Password</label
+                                                >
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    id="exampleInputConfirmPassword1"
+                                                    placeholder="Password"
+                                                />
+                                            </div>
+                                            <button
+                                                type="submit"
+                                                class="btn btn-gradient-primary me-2"
+                                            >
+                                                Update
+                                            </button>
+                                            <button class="btn btn-light">
+                                                Cancel
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <%- include('layouts/footer') %>
+
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <%- include('layouts/Script') %>
+    </body>
+</html>

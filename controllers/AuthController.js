@@ -59,4 +59,7 @@ export class AuthController {
     static loginForm = async (req, res) => {
         return res.render("login");
     };
+    static profile = async (req, res) => {
+        return res.render("Profile");
+    };
 }
