@@ -24,4 +24,8 @@ export class LockController {
             return error;
         }
     };
+
+    static keyActivity = async (req, res) => {
+        return res.render("Lock");
+    };
 }
