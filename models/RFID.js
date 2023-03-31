@@ -5,6 +5,10 @@ const Rfid = new mongoose.Schema({
         type: String,
         required: true,
     },
+    timestamp: {
+        type: Date,
+        required: true,
+    },
 });
 
 export default mongoose.model("Rfid", Rfid);

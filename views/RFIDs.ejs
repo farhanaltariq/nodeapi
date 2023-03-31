@@ -25,14 +25,50 @@
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Registered RFIDs</h4>
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    <h4 class="card-title">Registered RFIDs</h4>
+                                                </td>
+                                                <td class="text-end px-5">
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-gradient-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        <i class="mdi mdi-database-plus btn-icon-prepend"></i> Register New RFID </button>
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Insert RFID Name</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="">
+                                                                <div class="mb-3">
+                                                                    <label for="owner" class="form-label">Owner</label>
+                                                                    <input type="text" class="form-control" id="owner" placeholder="Owner">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="button" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>IDs</th>
                                                     <th>Registered At</th>
-                                                    <th>Owner</th>
+                                                    <th>Name</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -40,7 +76,7 @@
                                                 <tr>
                                                     <td><%=i+1%></td>
                                                     <td><%= rfid[i].id %></td>
-                                                    <td><%= rfid[i].createdAt %></td>
+                                                    <td><%= rfid[i].timestamp %></td>
                                                     <td>
                                                         <label
                                                             class="badge badge-success"
@@ -60,27 +96,8 @@
                     </div>
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->
-                    <footer class="footer">
-                        <div
-                            class="container-fluid d-flex justify-content-between"
-                        >
-                            <span
-                                class="text-muted d-block text-center text-sm-start d-sm-inline-block"
-                                >Copyright © bootstrapdash.com 2021</span
-                            >
-                            <span
-                                class="float-none float-sm-end mt-1 mt-sm-0 text-end"
-                            >
-                                Free
-                                <a
-                                    href="https://www.bootstrapdash.com/bootstrap-admin-template/"
-                                    target="_blank"
-                                    >Bootstrap admin template</a
-                                >
-                                from Bootstrapdash.com</span
-                            >
-                        </div>
-                    </footer>
+                    <%- include('layouts/footer') %>
+                    
                     <!-- partial -->
                 </div>
                 <!-- main-panel ends -->

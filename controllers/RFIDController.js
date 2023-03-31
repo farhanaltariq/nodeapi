@@ -23,7 +23,11 @@ export class RFIDController {
         try {
             const isexist = await Rfid.findOne({ id: req.body.id }).exec();
             if (!isexist) {
-                const rfid = new Rfid(req.body);
+                let date = new Date();
+                const rfid = new Rfid({
+                    id: req.body.id,
+                    timestamp: date,
+                });
                 const savedRFID = await rfid.save();
                 return res.status(201).json(savedRFID);
             }
@@ -36,7 +40,10 @@ export class RFIDController {
 
     static validateRFID = async (req, res) => {
         try {
-            if (isRegisterMode) return this.saveRFID(req, res);
+            if (isRegisterMode) {
+                this.changeMode(req, res);
+                return this.saveRFID(req, res);
+            }
 
             const rfid = await Rfid.find({ id: req.body.id }).exec();
             if (rfid.length > 0) {
