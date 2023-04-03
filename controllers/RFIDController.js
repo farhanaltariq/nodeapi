@@ -1,13 +1,22 @@
 import Rfid from "../models/RFID.js";
 import { LockController } from "./LockController.js";
 
-let isRegisterMode = false;
+global.isRegisterMode = false;
+global.newName = "";
 export class RFIDController {
-    static changeMode = async (req, res) => {
-        isRegisterMode = !isRegisterMode;
-        if (isRegisterMode)
-            return res.json({ message: "Mode changed to register" });
-        else return res.json({ message: "Mode changed to validate" });
+    static newRFID = async (req, res) => {
+        try {
+            const rfid = await Rfid.find();
+            global.isRegisterMode = !isRegisterMode;
+            global.newName = req.body.name;
+            // go back to page with message
+            req.flash("msg", "Please scan your RFID");
+            req.flash("status", "success");
+            res.locals.messages = req.flash();
+            return res.render("RFIDs", { rfid });
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
     };
 
     static getRFID = async (req, res) => {
@@ -27,6 +36,7 @@ export class RFIDController {
                 const rfid = new Rfid({
                     id: req.body.id,
                     timestamp: date,
+                    name: global.newName,
                 });
                 const savedRFID = await rfid.save();
                 return res.status(201).json(savedRFID);
@@ -38,10 +48,28 @@ export class RFIDController {
         }
     };
 
+    static deleteRFID = async (req, res) => {
+        try {
+            const delRFID = await Rfid.findByIdAndDelete(req.params.id);
+            if (!delRFID) {
+                req.flash("msg", "RFID not found");
+                req.flash("status", "danger");
+            } else {
+                req.flash("msg", "RFID Deleted");
+                req.flash("status", "success");
+            }
+            res.locals.messages = req.flash();
+            const rfid = await Rfid.find();
+            return res.render("RFIDs", { rfid });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    };
+
     static validateRFID = async (req, res) => {
         try {
-            if (isRegisterMode) {
-                this.changeMode(req, res);
+            if (global.isRegisterMode) {
+                global.isRegisterMode = !isRegisterMode;
                 return this.saveRFID(req, res);
             }
 

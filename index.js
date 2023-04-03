@@ -5,6 +5,9 @@ import dotenv from "dotenv";
 import { MongooseConnection } from "./config/database.js";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import flash from "connect-flash";
 
 const app = express();
 dotenv.config();
@@ -18,6 +21,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser("NotSoSecret"));
+app.use(
+    session({
+        secret: "something",
+        cookie: { maxAge: 60000 },
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+app.use(flash());
 app.use(routes);
 
 const host = process.env.HOST || "localhost";
