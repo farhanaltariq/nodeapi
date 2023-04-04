@@ -26,6 +26,11 @@ export class LockController {
     };
 
     static keyActivity = async (req, res) => {
-        return res.render("Lock");
+        try {
+            const lock = await Lock.find();
+            return res.render("Locks", { lock });
+        } catch (error) {
+            return error;
+        }
     };
 }

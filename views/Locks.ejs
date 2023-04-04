@@ -33,10 +33,32 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Activity</th>
-                                                    <th>Time</th>
+                                                    <th style="width:50%">Time</th>
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody>
+                                                <% for(var i = 0; i<lock.length; i++) { %>
+                                                <tr>
+                                                    <td><%=i+1%></td>
+                                                    <td class="py-1">
+                                                        <% if(lock[i].status == false) { %>
+                                                        <span
+                                                            class="badge badge-danger"
+                                                            >Closed</span
+                                                        >
+                                                        <% } else { %>
+                                                        <span
+                                                            class="badge badge-success"
+                                                            >Unlocked</span
+                                                        >
+                                                        <% } %>
+                                                    </td>
+                                                    <td style="width:50%">
+                                                        <%=lock[i].timestamp%>
+                                                    </td>
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
