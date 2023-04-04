@@ -8,6 +8,11 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import flash from "connect-flash";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 dotenv.config();
@@ -15,7 +20,7 @@ dotenv.config();
 MongooseConnection.connectDB();
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
