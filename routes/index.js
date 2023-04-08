@@ -9,7 +9,7 @@ import LockRoutes from "./LockRoutes.js";
 import PIRRoutes from "./PIRRoutes.js";
 
 router.use("/auth", AuthRoutes);
-// router.use(Auth.authenticateToken);
+router.use(Auth.authenticateToken);
 router.use("/rfid", RFIDRoutes);
 router.use("/lock", LockRoutes);
 router.use("/pir", PIRRoutes);

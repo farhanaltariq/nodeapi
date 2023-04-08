@@ -6,6 +6,6 @@ export class DefaultController {
         return res.redirect("/auth");
     };
     static dashboard = async (req, res) => {
-        return res.render("dashboard");
+        return res.render("dashboard", { username: req.cookies.username });
     };
 }

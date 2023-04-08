@@ -28,7 +28,10 @@ export class LockController {
     static keyActivity = async (req, res) => {
         try {
             const lock = await Lock.find();
-            return res.render("Locks", { lock });
+            return res.render("Locks", {
+                lock,
+                username: req.cookies.username,
+            });
         } catch (error) {
             return error;
         }

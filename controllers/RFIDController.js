@@ -22,7 +22,10 @@ export class RFIDController {
     static getRFID = async (req, res) => {
         try {
             const rfid = await Rfid.find();
-            return res.render("RFIDs", { rfid });
+            return res.render("RFIDs", {
+                rfid,
+                username: req.cookies.username,
+            });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

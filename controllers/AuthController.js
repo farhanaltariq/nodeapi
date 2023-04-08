@@ -31,6 +31,14 @@ export class AuthController {
 
                     data.accessToken = accessToken;
 
+                    res.cookie("accessToken", accessToken, {
+                        httpOnly: true,
+                    });
+                    res.cookie("username", user.username, { httpOnly: true });
+
+                    if (req.headers["user-agent"].includes("Chrome")) {
+                        return res.redirect("/dashboard");
+                    }
                     return res.json({ data });
                 }
             }
@@ -60,6 +68,10 @@ export class AuthController {
         return res.render("login");
     };
     static profile = async (req, res) => {
-        return res.render("Profile");
+        return res.render("Profile", { username: req.cookies.username });
+    };
+    static logout = async (req, res) => {
+        res.clearCookie("accessToken");
+        return res.redirect("/auth");
     };
 }

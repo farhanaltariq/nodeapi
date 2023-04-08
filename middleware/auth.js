@@ -7,20 +7,30 @@ export class Auth {
         try {
             const authHeader = req.headers["authorization"];
             const token = authHeader && authHeader.split(" ")[1];
-            if (token == null)
+            if (token == null && req.cookies.accessToken == null) {
+                // if request from browser
+                if (req.headers["user-agent"].includes("Chrome")) {
+                    return res.redirect("/auth");
+                }
+
                 return res.status(401).json({
                     message: "unauthorized",
                 });
+            }
 
-            jsonwebtoken.verify(
-                token,
-                process.env.ACCESS_TOKEN_SECRET,
-                (err, user) => {
-                    if (err) return res.sendStatus(403);
-                    req.user = user;
-                    next();
-                }
-            );
+            if (token != null) {
+                jsonwebtoken.verify(
+                    token,
+                    process.env.ACCESS_TOKEN_SECRET,
+                    (err, user) => {
+                        if (err) return res.sendStatus(403);
+                        req.user = user;
+                        next();
+                    }
+                );
+            } else {
+                next();
+            }
         } catch (err) {
             return res.status(500).json({
                 message: err.message,

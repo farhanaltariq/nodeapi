@@ -4,7 +4,10 @@ export class PIRController {
     static getPIR = async (req, res) => {
         try {
             const pir = await PIR.find();
-            return res.render("Motions", { pir });
+            return res.render("Motions", {
+                pir,
+                username: req.cookies.username,
+            });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
