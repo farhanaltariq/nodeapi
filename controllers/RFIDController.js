@@ -13,7 +13,10 @@ export class RFIDController {
             req.flash("msg", "Please scan your RFID");
             req.flash("status", "success");
             res.locals.messages = req.flash();
-            return res.render("RFIDs", { rfid });
+            return res.render("RFIDs", {
+                rfid,
+                username: req.cookies.username,
+            });
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
@@ -63,7 +66,10 @@ export class RFIDController {
             }
             res.locals.messages = req.flash();
             const rfid = await Rfid.find();
-            return res.render("RFIDs", { rfid });
+            return res.render("RFIDs", {
+                rfid,
+                username: req.cookies.username,
+            });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

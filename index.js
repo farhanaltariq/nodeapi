@@ -6,6 +6,7 @@ import { MongooseConnection } from "./config/database.js";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import session from "express-session";
 import flash from "connect-flash";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -27,6 +28,14 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser("NotSoSecret"));
+app.use(
+    session({
+        secret: "something",
+        cookie: { maxAge: 60000 },
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 app.use(flash());
 app.use(routes);
 
