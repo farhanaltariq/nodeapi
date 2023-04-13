@@ -43,7 +43,13 @@ export class AuthController {
                 }
             }
 
-            return res.status(401).json({ message: "Invalid credentials" });
+            req.flash("msg", "Invalid username or password");
+            res.locals.messages = req.flash();
+
+            if (req.headers["user-agent"].includes("Chrome")) {
+                return res.render("Login");
+            }
+            return res.json({ message: "Invalid username or password" });
         } catch (err) {
             return res.json(err.message);
         }
