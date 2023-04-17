@@ -7,6 +7,7 @@ router.get("/", AuthController.loginForm);
 router.get("/profile", AuthController.profile);
 router.post("/", AuthController.login);
 router.post("/register", AuthController.register);
+router.post("/update", AuthController.updateProfile);
 router.get("/logout", AuthController.logout);
 router.use(Auth.authenticateToken);
 
