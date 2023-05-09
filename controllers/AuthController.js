@@ -155,7 +155,7 @@ export class AuthController {
     };
 
     static loginForm = async (req, res) => {
-        return res.render("login");
+        return res.render("Login");
     };
     static profile = async (req, res) => {
         return res.render("Profile", { username: req.cookies.username });
