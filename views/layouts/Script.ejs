@@ -17,3 +17,14 @@
 <script src="/PurpleAdmin/assets/js/dashboard.js"></script>
 <script src="/PurpleAdmin/assets/js/todolist.js"></script>
 <!-- End custom js for this page -->
+<script>
+    function showImage(base64, contentType) {
+        var win = window.open();
+        var img = document.createElement("img");
+        img.src = "data:" + contentType + ";base64," + base64;
+        img.onload = function () {
+            win.document.title = "Gambar";
+            win.document.body.appendChild(img);
+        };
+    }
+</script>

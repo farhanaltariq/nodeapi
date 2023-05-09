@@ -40,8 +40,15 @@
                                                 <% for(var i=0; i<pir.length; i++){ %>
                                                 <tr>
                                                     <td><%=i+1%></td>
-                                                    <td>...</td>
-                                                    <td>...</td>
+                                                    <td><%=pir[i].timestamp%></td>
+                                                    <td>
+                                                        <a href="#" onclick="showImage('<%= pir[i].image.data.toString('base64') %>', '<%= pir[i].image.contentType %>')">
+                                                            <img 
+                                                                style="border-radius: 0; width: 200px; height: 100px;"
+                                                                src="data:<%= pir[i].image.contentType %>;base64,<%= pir[i].image.data.toString('base64') %>" 
+                                                            />
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 <% } %>
                                             </tbody>

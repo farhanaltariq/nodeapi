@@ -15,12 +15,25 @@ export class PIRController {
 
     static insertData = async (req, res) => {
         try {
-            new PIR({
-                status: req.body.status,
+            // Mengambil data dari body dan file upload
+            const image = req.file;
+
+            // Memasukkan data ke database
+            await new PIR({
+                image: {
+                    data: image.buffer,
+                    contentType: image.mimetype,
+                    filename: image.originalname,
+                },
                 timestamp: new Date(),
-            });
+            }).save();
+
+            // Mengembalikan response berhasil
+            return res.status(201).json({ message: "Data successfully saved" });
         } catch (error) {
-            return error;
+            // Mengembalikan response error
+            console.error(error);
+            return res.status(500).json({ message: "Internal server error" });
         }
     };
 

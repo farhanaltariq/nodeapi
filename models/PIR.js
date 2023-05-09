@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
-const PIR = new mongoose.Schema(
-    {
-        id: {
-            type: String,
-            required: true,
-        },
+const PIR = new mongoose.Schema({
+    image: {
+        data: Buffer,
+        contentType: String,
+        filename: String,
     },
-    { timestamps: true }
-);
+    timestamp: {
+        type: Date,
+        required: true,
+    },
+});
 
 export default mongoose.model("PIR", PIR);
