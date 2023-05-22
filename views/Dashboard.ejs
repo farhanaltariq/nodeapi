@@ -21,6 +21,19 @@
                                 Dashboard
                             </h3>
                         </div>
+                        <div class="row text-end">
+                            <div class="col grid-margin">
+                                Motion Sensor
+                                <a href="/pir/status" class="btn">
+                                    <div class="switch">
+                                        <input class="switch" type="checkbox"
+                                        id="pirStatus1" <% if(pirStatus==1) {
+                                        %>checked<% } %> />
+                                        <span class="slider round"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-4 stretch-card grid-margin">
                                 <div

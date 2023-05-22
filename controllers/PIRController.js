@@ -1,5 +1,5 @@
 import PIR from "../models/PIR.js";
-
+global.PIRStatus = false;
 export class PIRController {
     static getPIR = async (req, res) => {
         try {
@@ -15,6 +15,8 @@ export class PIRController {
 
     static insertData = async (req, res) => {
         try {
+            if (global.PIRStatus == false)
+                return res.status(403).json({ message: "Sensor is disabled" });
             // Mengambil data dari body dan file upload
             const image = req.file;
 
@@ -37,9 +39,10 @@ export class PIRController {
         }
     };
 
-    static getStatus = async (req, res) => {
+    static changeStatus = async (req, res) => {
         try {
-            return res.json("status");
+            PIRStatus = !PIRStatus;
+            return res.redirect("/dashboard");
         } catch (error) {
             return error;
         }

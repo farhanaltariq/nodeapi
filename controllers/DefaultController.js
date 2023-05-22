@@ -12,8 +12,10 @@ export class DefaultController {
         var countKey = await Lock.countDocuments();
         var countPIR = await PIR.countDocuments();
         var countRFID = await Rfid.countDocuments();
+
         return res.render("Dashboard", {
             username: req.cookies.username,
+            pirStatus: global.PIRStatus,
             countKey,
             countPIR,
             countRFID,
