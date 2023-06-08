@@ -27,7 +27,8 @@ export class LockController {
 
     static keyActivity = async (req, res) => {
         try {
-            const lock = await Lock.find();
+            const lock = await Lock.find().sort({ timestamp: -1 }).exec();
+            console.log(lock);
             return res.render("Locks", {
                 lock,
                 username: req.cookies.username,
