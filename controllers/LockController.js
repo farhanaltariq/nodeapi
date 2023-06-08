@@ -31,6 +31,7 @@ export class LockController {
             return res.render("Locks", {
                 lock,
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         } catch (error) {
             return error;

@@ -7,6 +7,7 @@ export class PIRController {
             return res.render("Motions", {
                 pir,
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });

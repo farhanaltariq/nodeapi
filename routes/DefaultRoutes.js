@@ -4,6 +4,7 @@ const router = express.Router();
 // redirect to login
 router.get("/", DefaultController.redirectToLogin);
 router.get("/dashboard", DefaultController.dashboard);
+router.post("/battery", DefaultController.UpdateBattery);
 router.all("*", DefaultController.notFound);
 
 export default router;

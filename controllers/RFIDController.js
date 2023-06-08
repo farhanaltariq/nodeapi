@@ -16,6 +16,7 @@ export class RFIDController {
             return res.render("RFIDs", {
                 rfid,
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -28,6 +29,7 @@ export class RFIDController {
             return res.render("RFIDs", {
                 rfid,
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -69,6 +71,7 @@ export class RFIDController {
             return res.render("RFIDs", {
                 rfid,
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });

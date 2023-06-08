@@ -85,6 +85,7 @@ export class AuthController {
                 res.locals.messages = req.flash();
                 return res.render("Profile", {
                     username: req.cookies.username,
+                    battery: global.BatteryLevel,
                 });
             }
 
@@ -96,6 +97,7 @@ export class AuthController {
                 res.locals.messages = req.flash();
                 return res.render("Profile", {
                     username: req.cookies.username,
+                    battery: global.BatteryLevel,
                 });
             }
             var user = await User.findById(req.cookies.id);
@@ -114,6 +116,7 @@ export class AuthController {
                         res.locals.messages = req.flash();
                         return res.render("Profile", {
                             username: req.cookies.username,
+                            battery: global.BatteryLevel,
                         });
                     }
                 }
@@ -134,6 +137,7 @@ export class AuthController {
                     res.locals.messages = req.flash();
                     return res.render("Profile", {
                         username: req.cookies.username,
+                        battery: global.BatteryLevel,
                     });
                 } else {
                     req.flash("msg", "Invalid password");
@@ -141,6 +145,7 @@ export class AuthController {
                     res.locals.messages = req.flash();
                     return res.render("Profile", {
                         username: req.cookies.username,
+                        battery: global.BatteryLevel,
                     });
                 }
             }
@@ -150,6 +155,7 @@ export class AuthController {
             res.locals.messages = req.flash();
             return res.render("Profile", {
                 username: req.cookies.username,
+                battery: global.BatteryLevel,
             });
         }
     };
@@ -158,7 +164,10 @@ export class AuthController {
         return res.render("Login");
     };
     static profile = async (req, res) => {
-        return res.render("Profile", { username: req.cookies.username });
+        return res.render("Profile", {
+            username: req.cookies.username,
+            battery: global.BatteryLevel,
+        });
     };
     static logout = async (req, res) => {
         res.clearCookie("accessToken");

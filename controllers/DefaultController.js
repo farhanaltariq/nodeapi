@@ -1,6 +1,7 @@
 import Lock from "../models/Lock.js";
 import PIR from "../models/PIR.js";
 import Rfid from "../models/RFID.js";
+global.BatteryLevel = "";
 export class DefaultController {
     static notFound = async (req, res) => {
         return res.status(404).json({ message: `${req.path} Not Found` });
@@ -19,6 +20,11 @@ export class DefaultController {
             countKey,
             countPIR,
             countRFID,
+            battery: global.BatteryLevel,
         });
+    };
+    static UpdateBattery = async (req, res) => {
+        global.BatteryLevel = req.body.battery;
+        return res.status(200).json({ message: "success" });
     };
 }
