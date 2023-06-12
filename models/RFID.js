@@ -11,7 +11,7 @@ const Rfid = new mongoose.Schema({
     },
     timestamp: {
         type: Date,
-        required: true,
+        default: () => moment.tz(Date.now(), timezone),
     },
 });
 

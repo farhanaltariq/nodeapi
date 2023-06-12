@@ -17,7 +17,6 @@ export class LockController {
         try {
             const lock = new Lock({
                 status: req.body.status,
-                timestamp: new Date(),
             });
             await lock.save();
         } catch (error) {
