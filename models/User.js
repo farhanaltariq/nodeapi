@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
+const timezone = "Asia/Jakarta";
 
 const User = new mongoose.Schema({
     username: {
@@ -9,6 +11,10 @@ const User = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    timestamp: {
+        type: Date,
+        default: () => moment.tz(Date.now(), timezone).toDate(),
     },
 });
 

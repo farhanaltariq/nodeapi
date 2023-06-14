@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
+const timezone = "Asia/Jakarta";
 
 const PIR = new mongoose.Schema({
     image: {
@@ -8,7 +10,7 @@ const PIR = new mongoose.Schema({
     },
     timestamp: {
         type: Date,
-        default: () => moment.tz(Date.now(), timezone),
+        default: () => moment.tz(Date.now(), timezone).toDate(),
     },
 });
 

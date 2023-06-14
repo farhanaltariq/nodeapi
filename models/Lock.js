@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
+const timezone = "Asia/Jakarta";
 
 const Lock = new mongoose.Schema({
     status: {
@@ -7,7 +9,7 @@ const Lock = new mongoose.Schema({
     },
     timestamp: {
         type: Date,
-        default: () => moment.tz(Date.now(), timezone),
+        default: () => moment.tz(Date.now(), timezone).toDate(),
     },
 });
 

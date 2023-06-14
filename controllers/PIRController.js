@@ -3,7 +3,7 @@ global.PIRStatus = false;
 export class PIRController {
     static getPIR = async (req, res) => {
         try {
-            const pir = await PIR.find();
+            const pir = await PIR.find().sort({ timestamp: -1 }).exec();
             return res.render("Motions", {
                 pir,
                 username: req.cookies.username,
@@ -35,12 +35,10 @@ export class PIRController {
             }).save();
 
             // Mengembalikan response berhasil
-            return res
-                .status(201)
-                .json({
-                    message: "Data successfully saved",
-                    pir: global.PIRStatus,
-                });
+            return res.status(201).json({
+                message: "Data successfully saved",
+                pir: global.PIRStatus,
+            });
         } catch (error) {
             // Mengembalikan response error
             console.error(error);
