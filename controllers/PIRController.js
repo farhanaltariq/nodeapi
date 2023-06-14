@@ -17,7 +17,10 @@ export class PIRController {
     static insertData = async (req, res) => {
         try {
             if (global.PIRStatus == false)
-                return res.status(403).json({ message: "Sensor is disabled" });
+                return res.status(403).json({
+                    message: "Sensor is disabled",
+                    pir: global.PIRStatus,
+                });
             // Mengambil data dari body dan file upload
             const image = req.file;
 
@@ -32,11 +35,19 @@ export class PIRController {
             }).save();
 
             // Mengembalikan response berhasil
-            return res.status(201).json({ message: "Data successfully saved" });
+            return res
+                .status(201)
+                .json({
+                    message: "Data successfully saved",
+                    pir: global.PIRStatus,
+                });
         } catch (error) {
             // Mengembalikan response error
             console.error(error);
-            return res.status(500).json({ message: "Internal server error" });
+            return res.status(500).json({
+                message: "Internal server error",
+                error: error.message,
+            });
         }
     };
 
