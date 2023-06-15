@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import moment from "moment-timezone";
-const timezone = "Asia/Jakarta";
 
 const PIR = new mongoose.Schema({
     image: {
