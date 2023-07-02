@@ -1,4 +1,5 @@
 import Lock from "../models/Lock.js";
+import RFID from "../models/RFID.js";
 
 export class LockController {
     static getStatus = async (req, res) => {
@@ -15,8 +16,12 @@ export class LockController {
 
     static createStatus = async (req, res) => {
         try {
+            const id = req.body.id;
+            const name = await RFID.findOne({ id: id }).exec();
+            const details = name.name + " | " + id;
             const lock = new Lock({
                 status: req.body.status,
+                details: details,
             });
             await lock.save();
         } catch (error) {
@@ -31,6 +36,7 @@ export class LockController {
                 lock,
                 username: req.cookies.username,
                 battery: global.BatteryLevel,
+                pirStatus: global.PIRStatus,
             });
         } catch (error) {
             return error;

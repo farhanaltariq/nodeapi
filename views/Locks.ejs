@@ -21,18 +21,32 @@
                                 Key Activity
                             </h3>
                         </div>
+                        <div class="row text-end">
+                            <div class="col grid-margin">
+                                Motion Sensor
+                                <a href="/pir/status" class="btn">
+                                    <div class="switch">
+                                        <input class="switch" type="checkbox"
+                                        id="pirStatus1" <% if(pirStatus==1) {
+                                        %>checked<% } %> />
+                                        <span class="slider round"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            Recorded Activities
+                                            Unlock Activities
                                         </h4>
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Activity</th>
+                                                    <th>Card Owner</th>
                                                     <th style="width:50%">Time</th>
                                                 </tr>
                                             </thead>
@@ -53,6 +67,7 @@
                                                         >
                                                         <% } %>
                                                     </td>
+                                                    <td><%=lock[i].details%></td>
                                                     <td style="width:50%">
                                                         <%=lock[i].timestamp%>
                                                     </td>

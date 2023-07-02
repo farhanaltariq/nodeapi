@@ -8,6 +8,7 @@ export class PIRController {
                 pir,
                 username: req.cookies.username,
                 battery: global.BatteryLevel,
+                pirStatus: global.PIRStatus,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -52,7 +53,8 @@ export class PIRController {
     static changeStatus = async (req, res) => {
         try {
             PIRStatus = !PIRStatus;
-            return res.redirect("/dashboard");
+            // redirect back to previous page
+            return res.redirect("back");
         } catch (error) {
             return error;
         }

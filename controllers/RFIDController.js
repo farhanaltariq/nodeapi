@@ -17,6 +17,7 @@ export class RFIDController {
                 rfid,
                 username: req.cookies.username,
                 battery: global.BatteryLevel,
+                pirStatus: global.PIRStatus,
             });
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -30,6 +31,7 @@ export class RFIDController {
                 rfid,
                 username: req.cookies.username,
                 battery: global.BatteryLevel,
+                pirStatus: global.PIRStatus,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -72,6 +74,7 @@ export class RFIDController {
                 rfid,
                 username: req.cookies.username,
                 battery: global.BatteryLevel,
+                pirStatus: global.PIRStatus,
             });
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -89,17 +92,11 @@ export class RFIDController {
             if (rfid.length > 0) {
                 req.body.status = true;
                 LockController.createStatus(req, res);
-                res.status(200).json({
-                    message: "RFID is valid, key unlocked for 7 seconds",
+                global.PIRStatus = false;
+                return res.status(200).json({
+                    message:
+                        "RFID is valid, key unlocked for 7 seconds. PIR is disabled",
                 });
-
-                // delay 5s
-                setTimeout(() => {
-                    req.body.status = false;
-                    LockController.createStatus(req, res);
-                }, 7000);
-
-                return;
             }
 
             req.body.status = false;

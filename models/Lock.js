@@ -7,6 +7,10 @@ const Lock = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    details: {
+        type: String,
+        required: true,
+    },
     timestamp: {
         type: Date,
         default: () => moment.tz(Date.now(), timezone).toDate(),
